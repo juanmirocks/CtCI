@@ -25,6 +25,8 @@ def are_mutual_permutations(a: Sequence[Any], b: Sequence[Any]) -> bool:
 
 # -----------------------------------------------------------------------------
 
+from itertools import permutations
+
 def test_are_mutual_permutations():
     fun = are_mutual_permutations
 

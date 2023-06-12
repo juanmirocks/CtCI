@@ -15,7 +15,7 @@ def urlify_1(x: str, l: int) -> str:
    return urlify_1_pure(x[0:l])
 
 def urlify_1_pure(x: str) -> str:
-    """Pythonic way to escape/encode a string for a URL."""
+    """Pythonic way to escape/encode a string to form a URL."""
     return urllib.parse.quote(x)
 
 

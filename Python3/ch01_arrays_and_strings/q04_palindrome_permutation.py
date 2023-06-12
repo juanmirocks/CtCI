@@ -27,7 +27,7 @@ def is_permutation_of_palindrome_1(x: str) -> bool:
         else:
             if (count % 2 == 1):
                 if one_char_is_odd:
-                    # two chars have count 1, so it's not a palindrome
+                    # at least two chars are repeated an odd number of times, so it's not a palindrome
                     return False
                 else:
                     one_char_is_odd = True

@@ -37,24 +37,22 @@ def is_permutation_of_palindrome_1(x: str) -> bool:
 
 # -----------------------------------------------------------------------------
 
+from Python3.__util__ import run_test_cases
+
 
 TEST_CASES = [
-    ("", True),
-    ("a", True),
-    ("aa", True),
-    ("a a", True),
-    ("a b", False),
-    ("aaa", True),
-    ("aab", True),
-    ("aaaa", True),
-    ("aaab", False),
-    ("tact coa", True),
-    ("tactcoapapa", True)
+    (("", ), True),
+    (("a", ), True),
+    (("aa", ), True),
+    (("a a", ), True),
+    (("a b", ), False),
+    (("aaa", ), True),
+    (("aab", ), True),
+    (("aaaa", ), True),
+    (("aaab", ), False),
+    (("tact coa", ), True),
+    (("tactcoapapa", ), True)
 ]
 
-def test():
-    fun = is_permutation_of_palindrome_1
-
-    for input, expected in TEST_CASES:
-        output = fun(input)
-        assert expected == output, f"in[{input}] -> expected[{expected}] vs. output[{output}]"
+def test_1():
+    run_test_cases(is_permutation_of_palindrome_1, TEST_CASES)

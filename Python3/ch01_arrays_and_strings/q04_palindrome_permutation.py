@@ -6,7 +6,7 @@ from collections import Counter
 def is_permutation_of_palindrome_1(x: str) -> bool:
     """
     Notes:
-    * Observation: A palindrome must be a string where each character is repeated an even number times (even sequence), or in addition, exceptionally, has a single character repeated 1 time (odd sequence).
+    * Observation: A palindrome must be a string where each character is repeated an even number of times (even sequence), or, in addition, has a single character repeated 1 time (odd sequence).
     * Spaces are to be ignored (as per the question definition). That is: "tact coa" is equivalent to "tactcoa".
     * Case is ignored (as per the question assumptions).
 
@@ -41,6 +41,10 @@ TEST_CASES = [
     ("aa", True),
     ("a a", True),
     ("a b", False),
+    ("aaa", True),
+    ("aab", True),
+    ("aaaa", True),
+    ("aaab", False),
     ("tact coa", True),
     ("tactcoapapa", True)
 ]

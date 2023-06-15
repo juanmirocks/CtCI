@@ -1,5 +1,4 @@
-from typing import Any, Callable, List, Sequence
-from Python3.__util__ import run_test_cases
+from typing import Any, Callable, Sequence
 
 
 def is_one_edit_away_1(a: Sequence[Any], b: Sequence[Any]) -> bool:
@@ -88,8 +87,10 @@ def is_one_edit_away_2(a: Sequence[Any], b: Sequence[Any]) -> bool:
 
 # -----------------------------------------------------------------------------
 
+from Python3.__util__ import run_test_cases
 
-TEST_CASES: List[tuple[tuple[str, str], bool]] = [
+
+TEST_CASES: list[tuple[tuple[str, str], bool]] = [
     (("pale", "ple"), True),
     (("pales", "pale"), True),
     (("pale", "bale"), True),

@@ -1,11 +1,8 @@
 import urllib.parse
-from typing import Callable, MutableSequence
+from typing import MutableSequence
 from typing import NamedTuple
 
 # -----------------------------------------------------------------------------
-
-# Functions' signature
-signature = Callable[[str, int], str]
 
 #
 # Define the replacements as constants to generalize the algorithm.
@@ -94,35 +91,24 @@ def urlify_3_raw(x: MutableSequence[str], l: int) -> MutableSequence[str]:
 # Testing
 # -----------------------------------------------------------------------------
 
-class Input(NamedTuple):
-    x: str
-    l: int
+from Python3.__util__ import run_test_cases
 
-class Case(NamedTuple):
-    input: Input
-    expected: str
 
-SAMPLE_TEST_CASE = Case(
-    Input("Mr John Smith    ", 13),
-    "Mr%20John%20Smith")
-
-TEST_CASES = [
-  Case(Input("", 0), ""),
-  Case(Input("   ", 1), "%20"),
-  SAMPLE_TEST_CASE
+SAMPLE_TEST_CASE = [
+    (("Mr John Smith    ", 13), "Mr%20John%20Smith")
 ]
 
-def _test(fun: signature):
-    for input, expected in TEST_CASES:
-        out = fun(*input)
-        assert out == expected, f"in[{input}] -> expected: [{expected}] vs. out[{out}]"
+TEST_CASES = [
+  (("", 0), ""),
+  (("   ", 1), "%20"),
+  *SAMPLE_TEST_CASE
+]
 
+def test_1():
+    run_test_cases(urlify_1, TEST_CASES)
 
-def test_urlify_1():
-    _test(urlify_1)
+def test_2():
+    run_test_cases(urlify_2, TEST_CASES)
 
-def test_urlify_2():
-    _test(urlify_2)
-
-def test_urlify_3():
-    _test(urlify_3)
+def test_3():
+    run_test_cases(urlify_3, TEST_CASES)

@@ -58,26 +58,23 @@ def are_all_unique_elements_3(x: Sequence[Any]) -> bool:
 
 # -----------------------------------------------------------------------------
 
-from typing import Callable
+from Python3.__util__ import run_test_cases
 
-TEST_CASES = [
-    (True, ""),
-    (True, "a"),
-    (False, "aa"),
-    (True, "".join(str(i) for i in range(10))),
-    (False, "".join(str(i) for i in range(10)) + "0")
+
+TEST_CASES: list[tuple[tuple[str], bool]] = [
+    (("", ), True),
+    (("a", ), True),
+    (("aa", ), False),
+    (("".join(str(i) for i in range(10)), ), True),
+    (("".join(str(i) for i in range(10)) + "0", ), False)
 ]
 
-def _test(fun: Callable[[Sequence[Any]], bool]):
-    for expected, test_case in TEST_CASES:
-      assert expected == fun(test_case), f"case: {test_case}"
 
+def test_1():
+    run_test_cases(are_all_unique_elements_1, TEST_CASES)
 
-def test_are_all_unique_elements_1():
-    _test(are_all_unique_elements_1)
+def test_2():
+    run_test_cases(are_all_unique_elements_2, TEST_CASES)
 
-def test_are_all_unique_elements_2():
-    _test(are_all_unique_elements_2)
-
-def test_are_all_unique_elements_3():
-    _test(are_all_unique_elements_3)
+def test_3():
+    run_test_cases(are_all_unique_elements_3, TEST_CASES)

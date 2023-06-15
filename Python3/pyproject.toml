@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ctci6"
+name = "ctci"
 version = "0.1.0"
 description = "juanmirock's answers on CtCI (6th-Edition) for Python3"
 authors = ["Dr. Juan Miguel Cejuela <i@juanmi.rocks>"]

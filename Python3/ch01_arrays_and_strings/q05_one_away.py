@@ -1,5 +1,5 @@
-from collections import Counter
-from typing import Any, Callable, List, Sequence, Tuple
+from typing import Any, Callable, List, Sequence
+from Python3.__util__ import run_test_cases
 
 
 def is_one_edit_away_1(a: Sequence[Any], b: Sequence[Any]) -> bool:
@@ -89,7 +89,7 @@ def is_one_edit_away_2(a: Sequence[Any], b: Sequence[Any]) -> bool:
 # -----------------------------------------------------------------------------
 
 
-TEST_CASES: List[Tuple[Tuple[str, str], bool]] = [
+TEST_CASES: List[tuple[tuple[str, str], bool]] = [
     (("pale", "ple"), True),
     (("pales", "pale"), True),
     (("pale", "bale"), True),
@@ -107,15 +107,9 @@ TEST_CASES: List[Tuple[Tuple[str, str], bool]] = [
 ]
 
 
-def _test(fun: Callable[[Sequence[Any], Sequence[Any]], bool]):
-    for input, expected_output in TEST_CASES:
-        output = fun(*input)
-        assert expected_output == output, f"in[{input}] -> expected_output[{expected_output}] vs. output[{output}]"
-
-
 def test_1():
-    _test(is_one_edit_away_1)
+    run_test_cases(is_one_edit_away_1, TEST_CASES)
 
 
 def test_2():
-    _test(is_one_edit_away_2)
+    run_test_cases(is_one_edit_away_2, TEST_CASES)

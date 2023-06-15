@@ -53,9 +53,12 @@ TEST_CASES: List[Tuple[Tuple[str, str], bool]] = [
     (("", ""), True),
     (("a", ""), True),
     (("", "a"), True),
+    (("a", "a"), True),
     (("aa", ""), False),
     (("", "aa"), False),
-    (("aab", "baa"), False)
+    (("aab", "baa"), False),
+    (("pale", "pasle"), True),
+    (("pale", "pales"), True)
 ]
 
 

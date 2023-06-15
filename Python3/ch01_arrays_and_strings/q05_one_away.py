@@ -13,9 +13,7 @@ def is_one_edit_away(a: Sequence[Any], b: Sequence[Any]) -> bool:
         # Return early for trivial case of zero edits, thus equal
         return True
 
-    a_len = len(a)
-    b_len = len(b)
-    diff_len = a_len - b_len
+    diff_len = len(a) - len(b)
 
     if diff_len < -1 or diff_len > 1:
         # Return early for trivial case of having a length different bigger than abs(1)

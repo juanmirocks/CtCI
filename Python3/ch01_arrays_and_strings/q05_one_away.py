@@ -7,7 +7,7 @@ def is_one_edit_away(a: Sequence[Any], b: Sequence[Any]) -> bool:
     Complexity:
 
     * Time: O(min(a, b))
-    * Space: O(1) - no extra data structures needed
+    * Space: O(1) - ASSUMING THAT PYTHON SEQUENCE SLICING DOES NOT CREATE COPIES -- WARNING this might depends on the datastructures, specially for strings.
     """
     if a == b:
         # Return early for trivial case of zero edits, thus equal

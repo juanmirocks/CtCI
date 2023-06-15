@@ -35,6 +35,9 @@ def is_permutation_of_palindrome_1(x: str) -> bool:
     return True
 
 
+# -----------------------------------------------------------------------------
+
+
 TEST_CASES = [
     ("", True),
     ("a", True),

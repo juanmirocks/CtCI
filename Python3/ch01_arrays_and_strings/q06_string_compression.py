@@ -54,13 +54,19 @@ TEST_CASES = [
 ]
 
 
-def test_1():
-    run_test_cases(compress_string_1, TEST_CASES)
+FUNS = [
+    compress_string_1
+]
 
 
-def test_the_output_is_always_smaller_or_equals_the_input(fun = compress_string_1):
-    for i in range(0, 1000):
-        input_random_string = "".join(random.choices(string.ascii_letters, k=random.randint(1, 100)))
+def test_arbitrary():
+    run_test_cases(TEST_CASES, *FUNS)
 
-        output = fun(input_random_string)
-        assert (len(output) < len(input_random_string)) or output == input_random_string, f"in[{input_random_string}] vs. out[{output}]"
+
+def test_the_output_is_always_smaller_or_equals_the_input():
+    for fun in FUNS:
+        for i in range(0, 1000):
+            input_random_string = "".join(random.choices(string.ascii_letters, k=random.randint(1, 100)))
+
+            output = fun(input_random_string)
+            assert (len(output) < len(input_random_string)) or output == input_random_string, f"in[{input_random_string}] vs. out[{output}]"

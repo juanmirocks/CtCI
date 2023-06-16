@@ -108,9 +108,7 @@ TEST_CASES: list[tuple[tuple[str, str], bool]] = [
 ]
 
 
-def test_1():
-    run_test_cases(is_one_edit_away_1, TEST_CASES)
-
-
-def test_2():
-    run_test_cases(is_one_edit_away_2, TEST_CASES)
+def test():
+    run_test_cases(TEST_CASES,
+                   is_one_edit_away_1,
+                   is_one_edit_away_2)

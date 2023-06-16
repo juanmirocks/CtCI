@@ -70,11 +70,8 @@ TEST_CASES: list[tuple[tuple[str], bool]] = [
 ]
 
 
-def test_1():
-    run_test_cases(are_all_unique_elements_1, TEST_CASES)
-
-def test_2():
-    run_test_cases(are_all_unique_elements_2, TEST_CASES)
-
-def test_3():
-    run_test_cases(are_all_unique_elements_3, TEST_CASES)
+def test():
+    run_test_cases(TEST_CASES,
+                   are_all_unique_elements_1,
+                   are_all_unique_elements_2,
+                   are_all_unique_elements_3)

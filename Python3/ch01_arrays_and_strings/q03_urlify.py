@@ -104,11 +104,8 @@ TEST_CASES = [
   *SAMPLE_TEST_CASE
 ]
 
-def test_1():
-    run_test_cases(urlify_1, TEST_CASES)
-
-def test_2():
-    run_test_cases(urlify_2, TEST_CASES)
-
-def test_3():
-    run_test_cases(urlify_3, TEST_CASES)
+def test():
+    run_test_cases(TEST_CASES,
+                   urlify_1,
+                   urlify_2,
+                   urlify_3)

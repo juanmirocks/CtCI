@@ -54,5 +54,5 @@ TEST_CASES = [
     (("tactcoapapa", ), True)
 ]
 
-def test_1():
-    run_test_cases(is_permutation_of_palindrome_1, TEST_CASES)
+def test():
+    run_test_cases(TEST_CASES, is_permutation_of_palindrome_1)

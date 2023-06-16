@@ -39,6 +39,8 @@ def compress_string_1(x: str) -> str:
 def compress_string_2(x: str) -> str:
     """
     Alternative: look-ahead elements to avoid special conditions and simplify code.
+
+    Complexity: same (asymptotically).
     """
     count = 0
 
@@ -55,6 +57,39 @@ def compress_string_2(x: str) -> str:
 
     # Confirm the compression is actually smaller than the original string
     return ret if (len(ret) < len(x)) else x
+
+
+def compress_string_3(x: str) -> str:
+    """
+    Alternative: return the original string as soon as the internal buffer's length equals the input's.
+    Note: in such a case, this implementation avoids calculating the buffer's value;
+    ref: [StringIO.getvalue()](https://github.com/python/cpython/blob/3.10/Modules/_io/stringio.c#L277)
+
+    Complexity: same (asymptotically)
+
+
+    Note:
+        the book discusses another alternative wherein the compression size is calculated first (without calculating the buffer) with the loop code,
+        then, if it's smaller than the original input's, repeats the loop code to do calculate the buffer.
+        I find that solution rather ugly. Either way, one would need to check with real data how often that case happens, then benchmark, and then decide.
+    """
+    count = 0
+
+    with StringIO() as buffer:
+        for i in range(0, len(x)):
+            count += 1
+
+            if (i+1 == len(x)) or (x[i] != x[i+1]):
+                buffer.write(x[i])
+                buffer.write(str(count))
+
+                # Confirm the compression is STILL smaller than the original string
+                if buffer.tell() >= len(x):
+                    return x
+
+                count = 0
+
+        return buffer.getvalue()
 
 
 # -----------------------------------------------------------------------------
@@ -74,7 +109,8 @@ TEST_CASES = [
 
 FUNS = [
     compress_string_1,
-    compress_string_2
+    compress_string_2,
+    compress_string_3
 ]
 
 

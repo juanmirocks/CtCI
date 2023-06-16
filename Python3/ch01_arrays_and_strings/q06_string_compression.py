@@ -33,10 +33,28 @@ def compress_string_1(x: str) -> str:
         ret = buffer.getvalue()
 
     # Confirm the compression is actually smaller than the original string
-    if len(ret) < len(x):
-        return ret
-    else:
-        return x
+    return ret if (len(ret) < len(x)) else x
+
+
+def compress_string_2(x: str) -> str:
+    """
+    Alternative: look-ahead elements to avoid special conditions and simplify code.
+    """
+    count = 0
+
+    with StringIO() as buffer:
+        for i in range(0, len(x)):
+            count += 1
+
+            if (i+1 == len(x)) or (x[i] != x[i+1]):
+                buffer.write(x[i])
+                buffer.write(str(count))
+                count = 0
+
+        ret = buffer.getvalue()
+
+    # Confirm the compression is actually smaller than the original string
+    return ret if (len(ret) < len(x)) else x
 
 
 # -----------------------------------------------------------------------------
@@ -55,7 +73,8 @@ TEST_CASES = [
 
 
 FUNS = [
-    compress_string_1
+    compress_string_1,
+    compress_string_2
 ]
 
 

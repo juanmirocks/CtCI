@@ -35,7 +35,7 @@ def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
     Rotate matrix 90° (counterclockwise) IN-PLACE (mutable/destructive function).
 
     Observations:
-    * Rotating a (quadratic) matrix can be seen as rotating "ring" by "ring", from the outer rings to the inner rings of the matrix.
+    * Rotating a (quadratic) matrix can be seen as rotating "ring" by "ring" (layers), from the outer rings to the inner rings of the matrix.
     * Elements can be changed in a loop of length 4 (the last element change closes the loop).
     * We can derive all coordinates of 4 changed elements from the first element's coordinates.
     * For matrices' "center" (for matrices with an odd n) are never changed.

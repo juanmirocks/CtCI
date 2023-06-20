@@ -11,7 +11,7 @@ import numpy.typing as npt
 
 def rotate_matrix_1(x: npt.NDArray) -> npt.NDArray:
     """
-    Rotate matrix 90% (counterclockwise) in a new returned matrix.
+    Rotate matrix 90° (counterclockwise) in a new returned matrix.
 
     Complexity:
     * Time: O(n**2)
@@ -32,7 +32,7 @@ def rotate_matrix_1(x: npt.NDArray) -> npt.NDArray:
 
 def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
     """
-    Rotate matrix 90% (counterclockwise) IN-PLACE (mutable/destructive function).
+    Rotate matrix 90° (counterclockwise) IN-PLACE (mutable/destructive function).
 
     Observations:
     * Rotating a (quadratic) matrix can be seen as rotating "ring" by "ring", from the outer rings to the inner rings of the matrix.

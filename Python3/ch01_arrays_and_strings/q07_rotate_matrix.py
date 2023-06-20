@@ -46,7 +46,7 @@ def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
     assert (len(x.shape) == 2) and (x.shape[0] == x.shape[1]), f"Expect square matrix of size nxn -- Received array shape: {x.shape} (array: {x})"
     n = x.shape[0]
 
-    for i in range(0, n-1):  # Note: we don't go to the last row of the ring, since its elements have been already changed
+    for i in range(0, n//2):  # Note: we only have n//2 rings
         for j in range(i, n-1-i):  # Note: we don't go to the last column of the ring, since it's been changed already
             # print(f"({i}, {j})")
             # Loop of 4 changes

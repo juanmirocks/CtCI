@@ -60,11 +60,11 @@ def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
 from Python3.__util__ import run_test_cases
 
 
-_TEST_FROM_TO = (1, 10)
+_TEST_FROM_TO_N = (0, 10)
 
 TEST_CASES = list(
      map(lambda x: ((x, ), np.copy(np.rot90(x))),  # Copy/clone the expected output given by numpy's rot90, since it returns a view, which is the difficult to use when testing the mutable version
-                      (np.arange(1, n**2 + 1).reshape(n, n) for n in range(_TEST_FROM_TO[0], _TEST_FROM_TO[1]+1))))
+                      (np.arange(1, n**2 + 1).reshape(n, n) for n in range(_TEST_FROM_TO_N[0], _TEST_FROM_TO_N[1]+1))))
 
 
 def test():

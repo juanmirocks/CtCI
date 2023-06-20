@@ -41,7 +41,6 @@ TEST_CASES = list(
 
 
 def test():
-    print(TEST_CASES[0], TEST_CASES[0][0][0].shape, TEST_CASES[0][1].shape)
     run_test_cases(TEST_CASES,
                    rotate_matrix_1,
                    # Provide specific `equal`` function for array/matrix (numpy's equal implementation creates a new element-wise boolean matrix)

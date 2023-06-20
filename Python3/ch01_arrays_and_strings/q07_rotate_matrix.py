@@ -38,7 +38,7 @@ def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
     * Rotating a (quadratic) matrix can be seen as rotating "ring" by "ring" (layers), from the outer rings to the inner rings of the matrix.
     * Elements can be changed in a loop of length 4 (the last element change closes the loop).
     * We can derive all coordinates of 4 changed elements from the first element's coordinates.
-    * For matrices' "center" (for matrices with an odd n) are never changed.
+    * Matrices' "center" are never changed (i.e., for matrices with an odd n).
 
     Complexity:
     * Time: O(n**2)

@@ -9,5 +9,6 @@ def run_test_cases(test_cases: Sequence[tuple[tuple, Output]], *funs: Callable[.
 
     for fun in funs:
         for input, expected_output in test_cases:
+            input_str = str(input) # Get the input's string representation first in case the input is mutated inside the function
             output = fun(*input)
-            assert equal(expected_output, output), f"in[{input}] -> expected_out[{expected_output}] vs. out[{output}]"
+            assert equal(expected_output, output), f"in:\n{input_str}]\n\n->\n\nexpected_out:\n{expected_output}\n\n vs. \n\nout:\n{output}"

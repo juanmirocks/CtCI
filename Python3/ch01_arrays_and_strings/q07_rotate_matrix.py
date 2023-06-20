@@ -6,6 +6,7 @@ import numpy.typing as npt
 #
 # The question does not specify the direction (clockwise vs. counterclockwise).
 # I assume counterclockwise direction, which is the standard for matrix rotation.
+# Note: The book's solution does the rotation clockwise.
 
 
 def rotate_matrix_1(x: npt.NDArray) -> npt.NDArray:

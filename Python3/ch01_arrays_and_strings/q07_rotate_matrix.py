@@ -23,6 +23,7 @@ def rotate_matrix_1(x: npt.NDArray) -> npt.NDArray:
 
     for i in range(0, n):
         for j in range(0, n):
+            # Rule: (i, j) -> (n-1-j, i)
             y[n - 1 - j, i] = x[i, j]
 
     return y

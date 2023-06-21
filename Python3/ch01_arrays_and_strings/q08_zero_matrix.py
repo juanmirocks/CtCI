@@ -15,9 +15,12 @@ from Python3.__util__ import run_test_cases
 
 
 TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
-    ((np.ndarray((0, 0)), ), np.ndarray((0, 0))), # edge case, empty matrix
-    ((np.arange(0, 0 + 1).reshape(1, 1), ), np.arange(0, 0 + 1).reshape(1, 1)), # basic case, matrix of size 1x1 with cell value 0
-    ((np.arange(1, 1 + 1).reshape(1, 1), ), np.arange(1, 1 + 1).reshape(1, 1)), # basic case, matrix of size 1x1 with cell value != 0 (esp. 1)
+    # edge case, empty matrix
+    ((np.ndarray((0, 0)), ), np.ndarray((0, 0))),
+    # basic case, matrix of size 1x1 with cell value 0
+    ((np.arange(0, 0 + 1).reshape(1, 1), ), np.arange(0, 0 + 1).reshape(1, 1)),
+    # basic case, matrix of size 1x1 with cell value != 0 (esp. 1)
+    ((np.arange(1, 1 + 1).reshape(1, 1), ), np.arange(1, 1 + 1).reshape(1, 1)),
     # Arbitrary case
     ((
       np.array([

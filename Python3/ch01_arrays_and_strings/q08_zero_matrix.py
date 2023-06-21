@@ -3,7 +3,7 @@ import numpy.typing as npt
 from typing import Any
 
 
-# Q: Write an algorithm such tat if an element in an MxN matrix is 0, its entire row and column are set to 0.
+# Q: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are set to 0.
 
 # Note: the question does not specify whether we should do the operation in-place or not.
 # My solution's functions are pure (i.e., not in-place)

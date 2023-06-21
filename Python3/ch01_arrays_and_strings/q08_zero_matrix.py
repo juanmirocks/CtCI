@@ -1,12 +1,96 @@
 import numpy as np
 import numpy.typing as npt
+from typing import Any
 
 
 # Q: Write an algorithm such tat if an element in an MxN matrix is 0, its entire row and column are set to 0.
 
+# Note: the question does not specify whether we should do the operation in-place or not.
+# My solution's functions are pure (i.e., not in-place)
+# Since the 2 alternatives are the same algorithmically, I disregard the space complexity of creating a copy of the input matrix.
 
-def zero_matrix_1(x: npt.NDArray) -> npt.NDArray:
-    return x
+
+_ZERO: Any = 0
+
+
+def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
+    """
+    Algorithm:
+    * First, we collect the rows & columns we need to delete. Second, we set those rows & columns to zero.
+
+    Optimizations:
+    * As soon as we find that a row/column has a zero value, we stop searching for that row/column.
+    * An optional `zero` parameter (defaults to `0`/ZERO) can be given.
+
+    Complexity:
+    * Time: O(n*m)
+    * Space: O(n + m)
+    """
+    assert len(x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+
+    y = np.copy(x)  # Return a modified copy
+
+    nullify_rows: set[int] = set()
+    # Note that: nullify_cols = set(range(0, x.shape[1])) - survive_cols -- if we wanted, we could avoid calculating nullify_cols directly
+    nullify_cols: set[int] = set()
+    survive_cols: set[int] = set(range(0, x.shape[1]))
+
+    for row in range(0, x.shape[0]):
+      for col in survive_cols:
+         if y[row, col] == zero:
+            nullify_rows.add(row)
+            nullify_cols.add(col)
+            survive_cols.remove(col)
+            break  # no need to iterate further in the row
+
+    # print(f"{nullify_rows} - {nullify_cols} - {survive_cols}")
+
+    for row in nullify_rows:
+        y[row, :] = zero
+        # Alternative:
+        #  for col in range(0, x.shape[1]):
+        #     y[row, col] = zero
+
+    for col in nullify_cols:
+        y[:, col] = zero
+        # Alternative:
+        # for row in range(0, x.shape[0]):
+        #     y[row, col] = zero
+
+    return y
+
+
+
+def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
+    """
+    Algorithm:
+    * As soon as we find a zero element, we set its row & column to zero.
+
+    Optimizations:
+    * As soon as we find that a row/column has a zero value, we stop searching for that row/column.
+    * An optional `zero` parameter (defaults to `0`) can be given.
+
+    Complexity:
+    * Time: O(n*m)
+    * Space: O(m)
+    """
+    assert len(x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+
+    y = np.copy(x)  # Return a modified copy
+
+    survive_cols: set[int] = set(range(0, x.shape[1]))
+
+    for row in range(0, x.shape[0]):
+      for col in survive_cols:
+         if y[row, col] == zero:
+            y[row, :] = zero
+            y[:, col] = zero
+            survive_cols.remove(col)
+            break  # no need to iterate further in the row
+
+    # print(f"{survive_cols}")
+
+    return y
 
 
 # -----------------------------------------------------------------------------
@@ -57,5 +141,6 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
 def test():
     run_test_cases(TEST_CASES,
                    zero_matrix_1,
+                   zero_matrix_2,
                    # Provide specific `equal`` function for array/matrix (numpy's equal implementation creates a new element-wise boolean matrix)
                    equal = lambda x, y: np.array_equal(x, y))

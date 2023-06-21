@@ -20,13 +20,13 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
     ((np.arange(1, 1 + 1).reshape(1, 1), ), np.arange(1, 1 + 1).reshape(1, 1)), # basic case, matrix of size 1x1 with cell value != 0 (esp. 1)
     # Arbitrary case
     ((
-      np.matrix([
+      np.array([
       [1, 1, 1, 1, 1],
       [1, 0, 1, 1, 1],
       [1, 1, 1, 1, 1],
       [1, 1, 1, 1, 0]
       ]), ),
-      np.matrix([
+      np.array([
       [1, 0, 1, 1, 0],
       [0, 0, 0, 0, 0],
       [1, 0, 1, 1, 0],
@@ -34,14 +34,14 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
       ])),
     # Arbitrary case
     ((
-      np.matrix([
+      np.array([
       [0, 1, 1, 1, 1],
       [1, 0, 1, 1, 1],
       [1, 1, 0, 1, 1],
       [1, 1, 1, 0, 1],
       [1, 1, 1, 1, 1],
       ]), ),
-      np.matrix([
+      np.array([
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],

@@ -81,7 +81,7 @@ def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
                 y[row, 0] = zero
                 nullify_cols.add(col)
 
-    # print(f"{nullify_rows} - {nullify_cols}")
+    # print(f"{nullify_cols} - {y}")
 
     for row in range(0, x.shape[0]):
         if y[row, 0] == zero:

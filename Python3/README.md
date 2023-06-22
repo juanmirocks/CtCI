@@ -24,8 +24,10 @@ poetry shell
 
 
 # Test
-# - Test all questions&answers
-pytest ch*/*
+# - Test all questions & answers (equivalent to pytest ch*/q*)
+pytest
+# - Test a chapter's all questions (for instance)
+pytest ch01*/q*
 # - Test a single question (for instance)
 pytest ch01*/q02*
 ```

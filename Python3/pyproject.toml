@@ -17,6 +17,11 @@ bandit = "^1.7.5"
 black = "^23.3.0"
 pytest = "^7.3.2"
 
+[tool.pytest.ini_options]
+testpaths = [
+  "ch*/q*"
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

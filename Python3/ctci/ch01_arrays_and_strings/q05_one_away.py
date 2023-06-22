@@ -1,4 +1,4 @@
-from typing import Any, Callable, Sequence
+from typing import Any, Sequence
 
 
 def is_one_edit_away_1(a: Sequence[Any], b: Sequence[Any]) -> bool:

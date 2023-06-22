@@ -1,6 +1,5 @@
 from io import StringIO
 import random
-import string
 
 
 def compress_string_1(x: str) -> str:
@@ -95,6 +94,7 @@ def compress_string_3(x: str) -> str:
 # -----------------------------------------------------------------------------
 
 from ctci.__util__ import run_test_cases
+import string
 
 
 TEST_CASES = [

@@ -94,7 +94,7 @@ def compress_string_3(x: str) -> str:
 
 # -----------------------------------------------------------------------------
 
-from Python3.__util__ import run_test_cases
+from ctci.__util__ import run_test_cases
 
 
 TEST_CASES = [

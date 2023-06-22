@@ -87,7 +87,7 @@ def is_one_edit_away_2(a: Sequence[Any], b: Sequence[Any]) -> bool:
 
 # -----------------------------------------------------------------------------
 
-from Python3.__util__ import run_test_cases
+from ctci.__util__ import run_test_cases
 
 
 TEST_CASES: list[tuple[tuple[str, str], bool]] = [

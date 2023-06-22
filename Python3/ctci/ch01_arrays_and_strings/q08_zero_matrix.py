@@ -146,7 +146,7 @@ def zero_matrix_3(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
 
 # -----------------------------------------------------------------------------
 
-from Python3.__util__ import run_test_cases
+from ctci.__util__ import run_test_cases
 
 
 TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [

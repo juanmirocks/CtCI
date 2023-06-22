@@ -90,7 +90,7 @@ def urlify_3_raw(x: MutableSequence[str], l: int) -> MutableSequence[str]:
 # Testing
 # -----------------------------------------------------------------------------
 
-from Python3.__util__ import run_test_cases
+from ctci.__util__ import run_test_cases
 
 
 SAMPLE_TEST_CASE = [

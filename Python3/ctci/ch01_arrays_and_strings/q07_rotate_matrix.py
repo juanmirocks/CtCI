@@ -58,7 +58,7 @@ def rotate_matrix_2(x: npt.NDArray) -> npt.NDArray:
 
 # -----------------------------------------------------------------------------
 
-from Python3.__util__ import run_test_cases
+from ctci.__util__ import run_test_cases
 
 
 _TEST_FROM_TO_N = (0, 20)

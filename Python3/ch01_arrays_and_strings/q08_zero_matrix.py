@@ -26,7 +26,8 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     * Time: O(n*m)
     * Space: O(n + m)
     """
-    assert len(x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+    assert len(
+        x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
 
     y = np.copy(x)  # Return a modified copy
 
@@ -34,11 +35,11 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     nullify_cols: set[int] = set()
 
     for row in range(0, x.shape[0]):
-      for col in range(0, x.shape[1]):
-         if y[row, col] == zero:
-            nullify_rows.add(row)
-            nullify_cols.add(col)
-            break  # no need to iterate further in the row
+        for col in range(0, x.shape[1]):
+            if y[row, col] == zero:
+                nullify_rows.add(row)
+                nullify_cols.add(col)
+                break  # no need to iterate further in the row
 
     # print(f"{nullify_rows} - {nullify_cols}")
 
@@ -70,18 +71,19 @@ def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     * Time: O(n*m)
     * Space: O(m)
     """
-    assert len(x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+    assert len(
+        x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
 
     y = np.copy(x)  # Return a modified copy
 
     nullify_cols: set[int] = set()
 
     for row in range(0, x.shape[0]):
-      for col in range(0, x.shape[1]):
-         if y[row, col] == zero:
-            y[row, :] = zero
-            nullify_cols.add(col)
-            break  # no need to iterate further in the row
+        for col in range(0, x.shape[1]):
+            if y[row, col] == zero:
+                y[row, :] = zero
+                nullify_cols.add(col)
+                break  # no need to iterate further in the row
 
     for col in nullify_cols:
         y[:, col] = zero
@@ -154,4 +156,4 @@ def test():
                    zero_matrix_1,
                    zero_matrix_2,
                    # Provide specific `equal`` function for array/matrix (numpy's equal implementation creates a new element-wise boolean matrix)
-                   equal = lambda x, y: np.array_equal(x, y))
+                   equal=lambda x, y: np.array_equal(x, y))

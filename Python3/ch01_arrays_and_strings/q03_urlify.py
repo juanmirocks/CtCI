@@ -1,6 +1,5 @@
 import urllib.parse
 from typing import MutableSequence
-from typing import NamedTuple
 
 # -----------------------------------------------------------------------------
 

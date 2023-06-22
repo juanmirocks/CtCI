@@ -19,8 +19,7 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     * First, we collect the rows & columns we need to zero. Second, we zero those rows & columns.
 
     Optimizations:
-    * As soon as we find that a row/column has a zero value, we stop searching for that row/column.
-    * An optional `zero` parameter (defaults to `0`/ZERO) can be given.
+    * An optional `zero` parameter (defaults to `0`) can be given.
 
     Complexity:
     * Time: O(n*m)
@@ -53,6 +52,43 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
         # Alternative:
         # for row in range(0, x.shape[0]):
         #     y[row, col] = zero
+
+    return y
+
+
+def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
+    """
+    Algorithm:
+    * First, we collect the rows & columns we need to zero. Second, we zero those rows & columns.
+
+    Optimizations:
+    * The matrix itself (the first column) is used to mark which rows we need to zero (thus we save n space)
+
+    Complexity:
+    * Time: O(n*m)
+    * Space: O(m)
+    """
+    assert len(
+        x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+
+    y = np.copy(x)  # Return a modified copy
+
+    nullify_cols: set[int] = set()
+
+    for row in range(0, x.shape[0]):
+        for col in range(0, x.shape[1]):
+            if y[row, col] == zero:
+                y[row, 0] = zero
+                nullify_cols.add(col)
+
+    # print(f"{nullify_rows} - {nullify_cols}")
+
+    for row in range(0, x.shape[0]):
+        if y[row, 0] == zero:
+            y[row, :] = zero
+
+    for col in nullify_cols:
+        y[:, col] = zero
 
     return y
 

@@ -16,7 +16,7 @@ _ZERO: Any = 0
 def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     """
     Algorithm:
-    * First, we collect the rows & columns we need to delete. Second, we set those rows & columns to zero.
+    * First, we collect the rows & columns we need to zero. Second, we zero those rows & columns.
 
     Optimizations:
     * As soon as we find that a row/column has a zero value, we stop searching for that row/column.
@@ -31,19 +31,16 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     y = np.copy(x)  # Return a modified copy
 
     nullify_rows: set[int] = set()
-    # Note that: nullify_cols = set(range(0, x.shape[1])) - survive_cols -- if we wanted, we could avoid calculating nullify_cols directly
     nullify_cols: set[int] = set()
-    survive_cols: set[int] = set(range(0, x.shape[1]))
 
     for row in range(0, x.shape[0]):
-      for col in survive_cols:
+      for col in range(0, x.shape[1]):
          if y[row, col] == zero:
             nullify_rows.add(row)
             nullify_cols.add(col)
-            survive_cols.remove(col)
             break  # no need to iterate further in the row
 
-    # print(f"{nullify_rows} - {nullify_cols} - {survive_cols}")
+    # print(f"{nullify_rows} - {nullify_cols}")
 
     for row in nullify_rows:
         y[row, :] = zero
@@ -63,7 +60,7 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
 def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     """
     Algorithm:
-    * As soon as we find a zero element, we set its row & column to zero.
+    * As soon as we find a zero element, we zero its entire row to zero and collect the column to zero later. Second, we zero the collected columns.
 
     Optimizations:
     * As soon as we find that a row/column has a zero value, we stop searching for that row/column.
@@ -77,17 +74,20 @@ def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
 
     y = np.copy(x)  # Return a modified copy
 
-    survive_cols: set[int] = set(range(0, x.shape[1]))
+    nullify_cols: set[int] = set()
 
     for row in range(0, x.shape[0]):
-      for col in survive_cols:
+      for col in range(0, x.shape[1]):
          if y[row, col] == zero:
             y[row, :] = zero
-            y[:, col] = zero
-            survive_cols.remove(col)
+            nullify_cols.add(col)
             break  # no need to iterate further in the row
 
-    # print(f"{survive_cols}")
+    for col in nullify_cols:
+        y[:, col] = zero
+        # Alternative:
+        # for row in range(0, x.shape[0]):
+        #     y[row, col] = zero
 
     return y
 

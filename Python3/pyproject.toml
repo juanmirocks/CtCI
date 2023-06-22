@@ -19,7 +19,7 @@ pytest = "^7.3.2"
 
 [tool.pytest.ini_options]
 testpaths = [
-  "ch*/q*"
+  "ctci/ch*/q*"
 ]
 
 [build-system]

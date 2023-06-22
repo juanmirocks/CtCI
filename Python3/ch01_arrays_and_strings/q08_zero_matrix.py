@@ -60,7 +60,6 @@ def zero_matrix_1(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     return y
 
 
-
 def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     """
     Algorithm:
@@ -105,6 +104,18 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
     ((np.arange(0, 0 + 1).reshape(1, 1), ), np.arange(0, 0 + 1).reshape(1, 1)),
     # basic case, matrix of size 1x1 with cell value != 0 (e.g., 1)
     ((np.arange(1, 1 + 1).reshape(1, 1), ), np.arange(1, 1 + 1).reshape(1, 1)),
+    # Arbitrary case
+    ((
+      np.array([
+      [1, 0, 1],
+      [1, 0, 1],
+      [1, 1, 1]
+      ]), ),
+      np.array([
+      [0, 0, 0],
+      [0, 0, 0],
+      [1, 0, 1]
+      ])),
     # Arbitrary case
     ((
       np.array([

@@ -132,6 +132,18 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
     # Arbitrary case
     ((
       np.array([
+      [1, 1, 1],
+      [0, 1, 1],
+      [1, 1, 1]
+      ]), ),
+      np.array([
+      [0, 1, 1],
+      [0, 0, 0],
+      [0, 1, 1]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
       [1, 1, 1, 1, 1],
       [1, 0, 1, 1, 1],
       [1, 1, 1, 1, 1],

@@ -93,6 +93,56 @@ def zero_matrix_2(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     return y
 
 
+def zero_matrix_3(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
+    """
+    Algorithm:
+    * First, we collect the rows & columns we need to zero. Second, we zero those rows & columns.
+
+    Optimizations:
+    * The matrix itself (the first column) is used to mark which rows we need to zero (thus we save n space)
+    * The matrix itself (the first row) is used to mark which columns we need to zero (thus we save m space)
+        * the first row is treated separately to distinguish whether we really want to zero it or just the corresponding column
+
+    Complexity:
+    * Time: O(n*m)
+    * Space: O(1)
+    """
+    assert len(
+        x.shape) == 2, f"Expect a matrix (i.e. 2 dimensions) -- Received array shape: {x.shape} (array: {x})"
+
+    y = np.copy(x)  # Return a modified copy
+
+    zero_first_row = False
+
+    n, m = x.shape
+
+    # First row (index == 0)
+    for col in range(0, m):
+        if y[0, col] == zero:
+            zero_first_row = True
+            y[0, col] = zero
+    for row in range(1, n):
+        for col in range(0, m):
+            if y[row, col] == zero:
+                y[row, 0] = zero
+                y[0, col] = zero
+
+    # print(f"{zero_first_row} -- {y}")
+
+    for row in range(1, n):
+        if y[row, 0] == zero:
+            y[row, :] = zero
+
+    for col in range(0, m):
+        if y[0, col] == zero:
+            y[:, col] = zero
+
+    if zero_first_row:
+        y[0, :] = zero
+
+    return y
+
+
 # -----------------------------------------------------------------------------
 
 from Python3.__util__ import run_test_cases
@@ -144,6 +194,30 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
     # Arbitrary case
     ((
       np.array([
+      [1, 1, 1],
+      [1, 1, 1],
+      [0, 1, 1]
+      ]), ),
+      np.array([
+      [0, 1, 1],
+      [0, 1, 1],
+      [0, 0, 0]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 0, 1]
+      ]), ),
+      np.array([
+      [1, 0, 1],
+      [1, 0, 1],
+      [0, 0, 0]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
       [1, 1, 1, 1, 1],
       [1, 0, 1, 1, 1],
       [1, 1, 1, 1, 1],
@@ -177,5 +251,7 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
 def test():
     run_test_cases(TEST_CASES,
                    zero_matrix_1,
+                   zero_matrix_2,
+                   zero_matrix_3,
                    # Provide specific `equal`` function for array/matrix (numpy's equal implementation creates a new element-wise boolean matrix)
                    equal=lambda x, y: np.array_equal(x, y))

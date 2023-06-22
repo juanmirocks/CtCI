@@ -69,7 +69,7 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
     ((np.arange(0, 0 + 1).reshape(1, 1), ), np.arange(0, 0 + 1).reshape(1, 1)),
     # basic case, matrix of size 1x1 with cell value != 0 (e.g., 1)
     ((np.arange(1, 1 + 1).reshape(1, 1), ), np.arange(1, 1 + 1).reshape(1, 1)),
-    # Arbitrary case
+    # Arbitrary case - it demonstrates it's not possible to just zero the whole column after a zero element is found
     ((
       np.array([
       [1, 0, 1],
@@ -81,7 +81,7 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
       [0, 0, 0],
       [1, 0, 1]
       ])),
-    # Arbitrary case
+    # Arbitrary case - it demonstrates it's not possible to skip checking a row after a first zero element is found
     ((
       np.array([
       [0, 1, 0],

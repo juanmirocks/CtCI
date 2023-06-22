@@ -102,6 +102,7 @@ def zero_matrix_3(x: npt.NDArray, zero: Any = _ZERO) -> npt.NDArray:
     * The matrix itself (the first column) is used to mark which rows we need to zero (thus we save n space)
     * The matrix itself (the first row) is used to mark which columns we need to zero (thus we save m space)
         * the first row is treated separately to distinguish whether we really want to zero it or just the corresponding column
+    * My algorithm is an improvement over the book's, which it treats both the first row & first column separately -- my solution treats only the first row separately
 
     Complexity:
     * Time: O(n*m)
@@ -178,6 +179,42 @@ TEST_CASES: list[tuple[tuple[npt.NDArray], npt.NDArray]] = [
       [0, 0, 0],
       [0, 1, 0],
       [0, 1, 0]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
+      [0, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1]
+      ]), ),
+      np.array([
+      [0, 0, 0],
+      [0, 1, 1],
+      [0, 1, 1]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
+      [1, 0, 1],
+      [1, 1, 1],
+      [1, 1, 1]
+      ]), ),
+      np.array([
+      [0, 0, 0],
+      [1, 0, 1],
+      [1, 0, 1]
+      ])),
+    # Arbitrary case
+    ((
+      np.array([
+      [1, 1, 0],
+      [1, 1, 1],
+      [1, 1, 1]
+      ]), ),
+      np.array([
+      [0, 0, 0],
+      [1, 1, 0],
+      [1, 1, 0]
       ])),
     # Arbitrary case
     ((
